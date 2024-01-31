@@ -1,13 +1,20 @@
 package com.app;
 
-/**
- * Hello world!
- *
- */
-public class App 
+import com.app.layout.AppGUI;
+
+import javax.swing.*;
+
+public class App
 {
+    private static final AppGUI app = new AppGUI();
+
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                app.setVisible(true);
+            }
+        });
     }
 }
