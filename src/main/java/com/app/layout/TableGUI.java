@@ -8,11 +8,17 @@ import java.awt.*;
 
 public class TableGUI extends JPanel {
     private static final String[][] DEFAULT = {{"", ""}};
+    private final Table table;
 
     public TableGUI(){
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(AppConstant.CONTAINER_WIDTH - 12, AppConstant.CONTAINER_HEIGHT));
-        JScrollPane jScrollPane = new JScrollPane(new Table());
+        table = new Table();
+        JScrollPane jScrollPane = new JScrollPane(table);
         add(jScrollPane, BorderLayout.CENTER);
+    }
+
+    public Table getTable(){
+        return table;
     }
 }

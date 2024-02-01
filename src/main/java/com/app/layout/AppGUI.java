@@ -7,6 +7,8 @@ import java.awt.*;
 
 public class AppGUI extends JFrame {
     protected static JLabel header, footer;
+    private static TableGUI tableGUI;
+    private static FormGUI formGUI;
     protected static int credit = 0;
     public AppGUI(){
         super("Form Registration");
@@ -23,14 +25,28 @@ public class AppGUI extends JFrame {
         JPanel container = new JPanel();
         container.setBackground(Color.LIGHT_GRAY);
         container.setLayout(new BorderLayout());
-        container.add(new FormGUI(), BorderLayout.WEST);
-        container.add(new TableGUI(), BorderLayout.EAST);
+
+
+        tableGUI = new TableGUI();
+        container.add(tableGUI, BorderLayout.EAST);
+
+        formGUI = new FormGUI(tableGUI.getTable());
+        container.add(formGUI, BorderLayout.WEST);
+
         add(container, BorderLayout.CENTER);
 
 
         footer = new JLabel(String.format("Total SKS : %d", credit), SwingConstants.CENTER);
         footer.setPreferredSize(new Dimension(AppConstant.HEADER_WIDTH, AppConstant.HEADER_HEIGHT));
         add(footer, BorderLayout.SOUTH);
+    }
+
+    public static TableGUI getTableGUI(){
+        return tableGUI;
+    }
+
+    public static FormGUI getFormGUI(){
+        return formGUI;
     }
 
 }

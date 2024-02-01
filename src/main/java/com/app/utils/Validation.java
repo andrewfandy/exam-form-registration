@@ -35,8 +35,8 @@ public class Validation {
         return true;
     }
 
-    private static boolean subjectExistOnTable(ArrayList<JTextField> fields){
-        ArrayList<String> subjects = Table.getSubjectData();
+    private static boolean subjectExistOnTable(Table table, ArrayList<JTextField> fields){
+        ArrayList<String> subjects = table.getSubjectData();
         for(JTextField field : fields){
             if(subjects.contains(field.getText().toLowerCase())){
                 JOptionPane.showMessageDialog(null,
@@ -49,10 +49,10 @@ public class Validation {
         return false;
     }
 
-    private static boolean maximumSKS(String sks){
+    private static boolean maximumSKS(Table table, String sks){
         final int MAXIMUM_SKS = 20;
         int subjectOnField = Integer.parseInt(sks);
-        int subjectOnTable = Table.getTotalSKS();
+        int subjectOnTable = table.getTotalSKS();
         int tablePlusField = subjectOnField + subjectOnTable;
         if(subjectOnTable > MAXIMUM_SKS ||
                 subjectOnField > MAXIMUM_SKS ||
@@ -66,19 +66,19 @@ public class Validation {
         }
         return false;
     }
-    public static boolean toSave(ArrayList<JTextField> fields){
+    public static boolean toSave(Table table, ArrayList<JTextField> fields){
         return saveValidation(fields) &&
                 isNumeric(fields.get(1).getText()) &&
-                !subjectExistOnTable(fields) &&
-                !maximumSKS(fields.get(1).getText());
+                !subjectExistOnTable(table, fields) &&
+                !maximumSKS(table, fields.get(1).getText());
 
     }
 
-    private static boolean rowSelected(){
-        return true;
-    }
-    public static boolean toDelete(){
-        return true;
+    public static void deleteError(){
+        JOptionPane.showMessageDialog(null,
+                "Must select a row",
+                "ERROR",
+                JOptionPane.ERROR_MESSAGE);
     }
 
 }

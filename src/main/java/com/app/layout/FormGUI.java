@@ -1,14 +1,16 @@
 package com.app.layout;
 
+import com.app.App;
 import com.app.components.Buttons;
 import com.app.components.Fields;
+import com.app.components.Table;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class FormGUI extends JPanel {
     private JPanel subjectField, sksField, fieldContainer, buttons;
-    public FormGUI(){
+    public FormGUI(Table table){
         setLayout(new BorderLayout());
 
         fieldContainer = new JPanel();
@@ -29,7 +31,7 @@ public class FormGUI extends JPanel {
 
         add(fieldContainer, BorderLayout.CENTER);
 
-        buttons = new Buttons();
+        buttons = new Buttons(table);
         add(buttons, BorderLayout.SOUTH);
     }
 
